@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Hugo 0.81.0" />
+
+
+<title>Should Gonzaga move to a bigger conference after its performance in the 2020-2021 season? - A Hugo website</title>
+<meta property="og:title" content="Should Gonzaga move to a bigger conference after its performance in the 2020-2021 season? - A Hugo website">
+
+
+  <link href='/favicon.ico' rel='icon' type='image/x-icon'/>
+
+
+
+  
+
+
+
+
+
+
+
+
+<link href='//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css' rel='stylesheet' type='text/css' />
+
+
+
+<link rel="stylesheet" href="/css/fonts.css" media="all">
+<link rel="stylesheet" href="/css/main.css" media="all">
+
+
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav">
+  <a href="/" class="nav-logo">
+    <img src="/images/logo.png"
+         width="50"
+         height="50"
+         alt="Logo">
+  </a>
+
+  <ul class="nav-links">
+    
+    <li><a href="/about/">About</a></li>
+    
+    <li><a href="https://github.com/rstudio/blogdown">GitHub</a></li>
+    
+    <li><a href="https://twitter.com/rstudio">Twitter</a></li>
+    
+  </ul>
+</nav>
+
+      </header>
+
+
+<main class="content" role="main">
+
+  <article class="article">
+    
+    <span class="article-duration">12 min read</span>
+    
+
+    <h1 class="article-title">Should Gonzaga move to a bigger conference after its performance in the 2020-2021 season?</h1>
+
+    
+    <span class="article-date">2021-04-01</span>
+    
+
+    <div class="article-content">
+      
+<script src="/2021/04/01/should-gonzaga-move-to-a-bigger-conference-after-its-performance-in-the-2020-2021-season/index_files/header-attrs/header-attrs.js"></script>
+
+
+<pre class="r"><code>library(tidyverse)</code></pre>
+<pre><code>## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.0 ──</code></pre>
+<pre><code>## ✓ ggplot2 3.3.3     ✓ purrr   0.3.4
+## ✓ tibble  3.0.5     ✓ dplyr   1.0.3
+## ✓ tidyr   1.1.2     ✓ stringr 1.4.0
+## ✓ readr   1.4.0     ✓ forcats 0.5.1</code></pre>
+<pre><code>## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()</code></pre>
+<pre class="r"><code>threeconferences &lt;- read_csv(&quot;~/Downloads/Gonzaga Project - Sheet1.csv&quot;)</code></pre>
+<pre><code>## 
+## ── Column specification ────────────────────────────────────────────────────────
+## cols(
+##   .default = col_double(),
+##   School = col_character(),
+##   Conference = col_character()
+## )
+## ℹ Use `spec()` for the full column specifications.</code></pre>
+<p>Gonzaga has dominated the West Coast Conference in the last 22 years and is it finally time for Gonzaga to move conferences to like the Mountain West or the PAC-12. Let me first show you how dominant Gonzaga has been in the West Coast Conference.</p>
+<pre class="r"><code>WCC&lt;- threeconferences %&gt;%  filter(Conference==&quot;WCC&quot;) %&gt;%
+select(School,FG, FGA, eFGPCT, PTS, OpponentPTS,)</code></pre>
+<pre class="r"><code>WCC</code></pre>
+<pre><code>## # A tibble: 10 x 6
+##    School              FG   FGA eFGPCT   PTS OpponentPTS
+##    &lt;chr&gt;            &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;       &lt;dbl&gt;
+##  1 Gonzaga           33.9  61.8  0.61   92.1        68.7
+##  2 BYU               28.7  59.6  0.556  78.1        68.6
+##  3 Loyola Marymount  23.9  52.1  0.517  69.5        68  
+##  4 Pepperdine        27.6  59.5  0.521  76.9        73.6
+##  5 Pacific           26.6  60.7  0.481  69.8        70.7
+##  6 Saint Mary&#39;s      23.4  55.4  0.478  64.3        62.6
+##  7 San Francisco     25.9  60.6  0.513  71.4        69.3
+##  8 Santa Clara       24.3  56.1  0.483  69.7        70.6
+##  9 San Diego         25.1  60.5  0.464  66.2        77.1
+## 10 Portland          23.2  56.5  0.476  69.5        83.2</code></pre>
+<p>Here I am taking a look at the five things to dissect when looking at a powerful team in a conference. You can make an argument for other stats, but these five fields stuck out to me the most when proving Gonzaga is dominant in the West Coast Conference. Let’s take a look at where they stand in effective field goal percentage, average points over the season and the average points they allowed their opponent to score.</p>
+<pre class="r"><code>WCC %&gt;% select(School,eFGPCT) %&gt;%
+arrange(desc(eFGPCT)) </code></pre>
+<pre><code>## # A tibble: 10 x 2
+##    School           eFGPCT
+##    &lt;chr&gt;             &lt;dbl&gt;
+##  1 Gonzaga           0.61 
+##  2 BYU               0.556
+##  3 Pepperdine        0.521
+##  4 Loyola Marymount  0.517
+##  5 San Francisco     0.513
+##  6 Santa Clara       0.483
+##  7 Pacific           0.481
+##  8 Saint Mary&#39;s      0.478
+##  9 Portland          0.476
+## 10 San Diego         0.464</code></pre>
+<p>Gonzaga leads the West Coast Conference in effective field goal percentage and by a good margin with second place with a .054 difference ahead of BYU.</p>
+<pre class="r"><code>WCC %&gt;% select(School,PTS) %&gt;%
+arrange(desc(PTS))</code></pre>
+<pre><code>## # A tibble: 10 x 2
+##    School             PTS
+##    &lt;chr&gt;            &lt;dbl&gt;
+##  1 Gonzaga           92.1
+##  2 BYU               78.1
+##  3 Pepperdine        76.9
+##  4 San Francisco     71.4
+##  5 Pacific           69.8
+##  6 Santa Clara       69.7
+##  7 Loyola Marymount  69.5
+##  8 Portland          69.5
+##  9 San Diego         66.2
+## 10 Saint Mary&#39;s      64.3</code></pre>
+<p>Once again Gonzaga is the offensive machine in this conference as they average 14 more points than the second place team in the conference. We know Gonzaga can make plays and shoot the ball, but can they guard their opponents well? Let’s take a look!</p>
+<pre class="r"><code>WCC %&gt;% select(School,OpponentPTS) %&gt;%
+arrange(desc(OpponentPTS))</code></pre>
+<pre><code>## # A tibble: 10 x 2
+##    School           OpponentPTS
+##    &lt;chr&gt;                  &lt;dbl&gt;
+##  1 Portland                83.2
+##  2 San Diego               77.1
+##  3 Pepperdine              73.6
+##  4 Pacific                 70.7
+##  5 Santa Clara             70.6
+##  6 San Francisco           69.3
+##  7 Gonzaga                 68.7
+##  8 BYU                     68.6
+##  9 Loyola Marymount        68  
+## 10 Saint Mary&#39;s            62.6</code></pre>
+<p>Well we know Portland allowed the most points out of the West Coast Conference while Saint Mary’s allowed the least amount of points. Gonzaga sits in fourth place when looking at the opponent’s score, still better than half the conference.
+Now I am going to show a visual of how the West Coast Conference shot the basketball with field goals made and field goal attempts.</p>
+<pre class="r"><code>shots&lt;-WCC %&gt;% 
+  group_by(School) %&gt;% 
+  summarise(
+    FieldGoalsMade = sum(FG),
+    FieldGoalsAttempted = sum(FGA),
+  ) </code></pre>
+<pre class="r"><code>shots</code></pre>
+<pre><code>## # A tibble: 10 x 3
+##    School           FieldGoalsMade FieldGoalsAttempted
+##  * &lt;chr&gt;                     &lt;dbl&gt;               &lt;dbl&gt;
+##  1 BYU                        28.7                59.6
+##  2 Gonzaga                    33.9                61.8
+##  3 Loyola Marymount           23.9                52.1
+##  4 Pacific                    26.6                60.7
+##  5 Pepperdine                 27.6                59.5
+##  6 Portland                   23.2                56.5
+##  7 Saint Mary&#39;s               23.4                55.4
+##  8 San Diego                  25.1                60.5
+##  9 San Francisco              25.9                60.6
+## 10 Santa Clara                24.3                56.1</code></pre>
+<p>Since we are only looking at the field goals made and attempted, I renamed them so it could be used for the bar charts for later.</p>
+<pre class="r"><code>shots %&gt;% 
+  pivot_longer(
+    cols=starts_with(&quot;FieldGoals&quot;), 
+    names_to=&quot;Type&quot;, 
+    values_to=&quot;FieldGoals&quot;)-&gt; shotslonger</code></pre>
+<pre class="r"><code>shotslonger</code></pre>
+<pre><code>## # A tibble: 20 x 3
+##    School           Type                FieldGoals
+##    &lt;chr&gt;            &lt;chr&gt;                    &lt;dbl&gt;
+##  1 BYU              FieldGoalsMade            28.7
+##  2 BYU              FieldGoalsAttempted       59.6
+##  3 Gonzaga          FieldGoalsMade            33.9
+##  4 Gonzaga          FieldGoalsAttempted       61.8
+##  5 Loyola Marymount FieldGoalsMade            23.9
+##  6 Loyola Marymount FieldGoalsAttempted       52.1
+##  7 Pacific          FieldGoalsMade            26.6
+##  8 Pacific          FieldGoalsAttempted       60.7
+##  9 Pepperdine       FieldGoalsMade            27.6
+## 10 Pepperdine       FieldGoalsAttempted       59.5
+## 11 Portland         FieldGoalsMade            23.2
+## 12 Portland         FieldGoalsAttempted       56.5
+## 13 Saint Mary&#39;s     FieldGoalsMade            23.4
+## 14 Saint Mary&#39;s     FieldGoalsAttempted       55.4
+## 15 San Diego        FieldGoalsMade            25.1
+## 16 San Diego        FieldGoalsAttempted       60.5
+## 17 San Francisco    FieldGoalsMade            25.9
+## 18 San Francisco    FieldGoalsAttempted       60.6
+## 19 Santa Clara      FieldGoalsMade            24.3
+## 20 Santa Clara      FieldGoalsAttempted       56.1</code></pre>
+<p>This will be the data I will be using for the stacked bar charts. Let’s see the visual.</p>
+<pre class="r"><code>ggplot(shotslonger, aes(x=reorder(School, FieldGoals), weight=FieldGoals, fill=Type)) + 
+  labs(x=&quot;Team&quot;, y=&quot;Field Goals Made and Attempted&quot;, title=&quot;Gonzaga made the most baskets and shot the most in the WCC.&quot;, subtitle=&quot;The Bulldogs have shot the ball the best in the conference.&quot;, caption=&quot;Source: Sports Reference | By Brandon Mueting&quot;) +
+  geom_bar(color=&quot;black&quot;) +
+   theme_minimal()+
+   theme(
+    plot.title = element_text(size = 12, face = &quot;bold&quot;),
+    axis.title = element_text(size = 10), 
+    plot.subtitle = element_text(size=8), 
+    panel.grid.minor = element_blank()
+    ) +coord_flip()</code></pre>
+<p><img src="/2021/04/01/should-gonzaga-move-to-a-bigger-conference-after-its-performance-in-the-2020-2021-season/index_files/figure-html/unnamed-chunk-12-1.png" width="672" />
+As you can see by the bar chart, Gonzaga makes the most of the field goals they shoot and lead the conference in shots made and attempted. After looking at these stats, it is safe to say Gonzaga should move conferences. The question is will it be the Mountain West or exceed all the way to the PAC-12?</p>
+<pre class="r"><code>GonzagaMW &lt;- read_csv(&quot;~/Desktop/MountainWestwithGonzaga - Sheet1.csv&quot;)</code></pre>
+<pre><code>## 
+## ── Column specification ────────────────────────────────────────────────────────
+## cols(
+##   .default = col_double(),
+##   School = col_character(),
+##   Conference = col_character()
+## )
+## ℹ Use `spec()` for the full column specifications.</code></pre>
+<p>Now that we can compare Gonzaga to the rest of the Mountain West conference we will still look at how they would have compared if they were in the Mountain West for the 2020-2021 season. I made a separate .csv file with the Mountain West conference with Gonzaga. Effective field goal percentage, opponent points, strength of schedule and also team rebounds.</p>
+<pre class="r"><code>GonzagaMW %&gt;% select(School,eFGPCT,OpponentPTS,TRB, SOS)</code></pre>
+<pre><code>## # A tibble: 12 x 5
+##    School          eFGPCT OpponentPTS   TRB   SOS
+##    &lt;chr&gt;            &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1 Boise State      0.522        66.7  35.5  1.79
+##  2 Colorado State   0.544        65.6  35    1.12
+##  3 San Diego State  0.526        61.2  35.8  3.05
+##  4 Utah State       0.5          62.3  40.7  1.36
+##  5 Fresno State     0.492        67.4  35.5  0.12
+##  6 Nevada           0.517        69.7  35.7  2.2 
+##  7 UNLV             0.516        67.5  36    1.04
+##  8 Wyoming          0.537        75.5  32.6 -2.27
+##  9 Air Force        0.521        71.9  23.2  0.27
+## 10 San Jose State   0.455        81.4  34.4  1.05
+## 11 New Mexico       0.453        71.7  38.1 -1.68
+## 12 Gonzaga          0.61         68.7  38    5.1</code></pre>
+<p>Let’s start by looking at effective field goal percentage.</p>
+<pre class="r"><code>GonzagaMW %&gt;% select(School, eFGPCT) %&gt;% arrange(desc(eFGPCT))</code></pre>
+<pre><code>## # A tibble: 12 x 2
+##    School          eFGPCT
+##    &lt;chr&gt;            &lt;dbl&gt;
+##  1 Gonzaga          0.61 
+##  2 Colorado State   0.544
+##  3 Wyoming          0.537
+##  4 San Diego State  0.526
+##  5 Boise State      0.522
+##  6 Air Force        0.521
+##  7 Nevada           0.517
+##  8 UNLV             0.516
+##  9 Utah State       0.5  
+## 10 Fresno State     0.492
+## 11 San Jose State   0.455
+## 12 New Mexico       0.453</code></pre>
+<p>If Gonzaga was in the Mountain West for the 2020-2021 season they would have led the conference and by a good margin as well.</p>
+<pre class="r"><code>GonzagaMW %&gt;% select(School, TRB) %&gt;% arrange(desc(TRB))</code></pre>
+<pre><code>## # A tibble: 12 x 2
+##    School            TRB
+##    &lt;chr&gt;           &lt;dbl&gt;
+##  1 Utah State       40.7
+##  2 New Mexico       38.1
+##  3 Gonzaga          38  
+##  4 UNLV             36  
+##  5 San Diego State  35.8
+##  6 Nevada           35.7
+##  7 Boise State      35.5
+##  8 Fresno State     35.5
+##  9 Colorado State   35  
+## 10 San Jose State   34.4
+## 11 Wyoming          32.6
+## 12 Air Force        23.2</code></pre>
+<p>Here is an interesting change of thought, Gonzaga would have placed third in the conference as the Lobos of New Mexico and Aggies of Utah St. averages more rebounds than the Bulldogs. Well since Gonzaga was in a conference they dominated, we will take a look at how they contest with their strength of schedule.</p>
+<pre class="r"><code>GonzagaMW %&gt;% select(School, SOS) %&gt;% arrange(desc(SOS))</code></pre>
+<pre><code>## # A tibble: 12 x 2
+##    School            SOS
+##    &lt;chr&gt;           &lt;dbl&gt;
+##  1 Gonzaga          5.1 
+##  2 San Diego State  3.05
+##  3 Nevada           2.2 
+##  4 Boise State      1.79
+##  5 Utah State       1.36
+##  6 Colorado State   1.12
+##  7 San Jose State   1.05
+##  8 UNLV             1.04
+##  9 Air Force        0.27
+## 10 Fresno State     0.12
+## 11 New Mexico      -1.68
+## 12 Wyoming         -2.27</code></pre>
+<p>Gonzaga had the hardest schedule compared to the rest of the Mountain West conference, and it was no competition either. They beat Kansas,West Virginia,Iowa,Virginia and Conference rival BYU who were all ranked in the Top 25 at some point this season. This would explain the strength of schedule for the Bulldogs.
+Earlier we noticed that they placed in the top half of the West Coast Conference in the least amount of points scored, how would they shape up in the Mountain West? Let’s make a scatterplot to get a good visual.</p>
+<pre class="r"><code>Zags&lt;-GonzagaMW %&gt;% filter(School == &quot;Gonzaga&quot;)</code></pre>
+<pre class="r"><code>ggplot() + 
+  geom_point(data=GonzagaMW, aes(x=OpponentPTS, y=Wins)) +
+  geom_smooth(data=GonzagaMW, aes(x=OpponentPTS, y=Wins), method=&quot;lm&quot;) +
+  geom_point(data=Zags, aes(x=OpponentPTS, y=Wins), color=&quot;blue&quot;) +
+ labs(x=&quot;Opponent Points&quot;, y=&quot;Wins&quot;, title=&quot;Gonzaga sits in the middle of the pack.&quot;, subtitle=&quot;The Bulldogs would ram into defense in the Mountain West.&quot;, caption=&quot;Source: Sports Reference | By Brandon Mueting&quot;) + theme_minimal() + 
+  theme(
+    plot.title = element_text(size = 16, face = &quot;bold&quot;),
+    axis.title = element_text(size = 10), 
+    plot.subtitle = element_text(size=12), 
+    panel.grid.minor = element_blank()
+    ) </code></pre>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<p><img src="/2021/04/01/should-gonzaga-move-to-a-bigger-conference-after-its-performance-in-the-2020-2021-season/index_files/figure-html/unnamed-chunk-19-1.png" width="672" />
+Gonzaga did go undefeated this season, but this shows that they are more offensively focused than defensive, in this case they would sit in the middle of the Mountain West conference when defending their opponents. Even though the Mountain West might be a good fit, Gonzaga still seems to outpower the conference.It still seems like they have a chance at making a good run in the PAC-12.</p>
+<pre class="r"><code>P12Gonzaga &lt;- read_csv(&quot;~/Desktop/PAC12withGONZAGA - Sheet1.csv&quot;)</code></pre>
+<pre><code>## 
+## ── Column specification ────────────────────────────────────────────────────────
+## cols(
+##   .default = col_double(),
+##   School = col_character(),
+##   Conference = col_character()
+## )
+## ℹ Use `spec()` for the full column specifications.</code></pre>
+<p>Like we did with the Mountain West, we will see how Gonzaga would rank in the PAC-12 when looking at effective field goal percentage, team rebounding and opponent points.</p>
+<pre class="r"><code>P12Gonzaga %&gt;% select(School, eFGPCT) %&gt;% arrange(desc(eFGPCT))</code></pre>
+<pre><code>## # A tibble: 13 x 2
+##    School           eFGPCT
+##    &lt;chr&gt;             &lt;dbl&gt;
+##  1 Gonzaga           0.61 
+##  2 Oregon            0.548
+##  3 Utah              0.531
+##  4 USC               0.527
+##  5 Colorado          0.524
+##  6 UCLA              0.522
+##  7 Stanford          0.514
+##  8 Arizona           0.505
+##  9 Oregon State      0.499
+## 10 California        0.497
+## 11 Arizona State     0.492
+## 12 Washington        0.489
+## 13 Washington State  0.479</code></pre>
+<p>Gonzaga shoots the ball really well and would sit at the top of the standings in one of the power conferences of college basketball.</p>
+<pre class="r"><code>P12Gonzaga %&gt;% select(School, TRB) %&gt;% arrange(desc(TRB))</code></pre>
+<pre><code>## # A tibble: 13 x 2
+##    School             TRB
+##    &lt;chr&gt;            &lt;dbl&gt;
+##  1 USC               39.5
+##  2 Arizona           38.3
+##  3 Washington State  38  
+##  4 Gonzaga           38  
+##  5 UCLA              35  
+##  6 Colorado          34.8
+##  7 Oregon State      34.5
+##  8 Stanford          33.5
+##  9 Oregon            31.9
+## 10 Arizona State     31.9
+## 11 California        31.6
+## 12 Utah              31.3
+## 13 Washington        31.2</code></pre>
+<p>Here Gonzaga falls a little short in the PAC-12 being ranked fourth in the conference. Especially with Drew Timme possibly leaving they need a rebounder, hopefully Chet Holmgren commits there to calm all you Gonzaga fans.</p>
+<pre class="r"><code>P12Gonzaga %&gt;% select(School, OpponentPTS) %&gt;% arrange(desc(OpponentPTS))</code></pre>
+<pre><code>## # A tibble: 13 x 2
+##    School           OpponentPTS
+##    &lt;chr&gt;                  &lt;dbl&gt;
+##  1 Washington              77.4
+##  2 Arizona State           77.1
+##  3 Utah                    69.8
+##  4 Stanford                69.6
+##  5 California              69.2
+##  6 Gonzaga                 68.7
+##  7 Arizona                 68.6
+##  8 Oregon State            68  
+##  9 UCLA                    67.9
+## 10 Washington State        67.4
+## 11 Oregon                  65.5
+## 12 USC                     64.4
+## 13 Colorado                63.8</code></pre>
+<p>Gonzaga would be in the bottom half of the conference taking a look at points allowed by opponents, but like we said before what about the strength of schedule. This can be our deciding factor to determine whether Gonzaga can compete in the PAC-12 or if the Mountain West is a better fit. Let’s use a bubble chart to make a good visual of the strength of schedule for Gonzaga in the PAC-12 while using opponent points and points as a factor.</p>
+<pre class="r"><code>P12Gonzaga %&gt;% 
+  ungroup() %&gt;% 
+  summarise(
+    Points = mean(PTS), 
+    OpponentPoints = mean(OpponentPTS)
+    )</code></pre>
+<pre><code>## # A tibble: 1 x 2
+##   Points OpponentPoints
+##    &lt;dbl&gt;          &lt;dbl&gt;
+## 1   73.1           69.0</code></pre>
+<p>Here are the averages for both team points and their opponent’s points. This will be used in the bubble chart to determine if a team is really good offensively or defensively or neither or both</p>
+<pre class="r"><code>library(ggrepel)</code></pre>
+<pre class="r"><code>ggplot() + 
+  geom_point(
+    data=P12Gonzaga, 
+    aes(x=PTS, y=OpponentPTS, size=SOS)
+    )+
+    geom_vline(xintercept = 73.06923) + 
+  geom_hline(yintercept = 69.03077) +
+  geom_text_repel(
+    data=P12Gonzaga, 
+    aes(x=PTS, y=OpponentPTS, label=School))+
+  labs(title=&quot;Gonzaga scores a lot, trapped in the middle in defense.&quot;, subtitle=&quot;Gonzaga has a weak schedule compared to the PAC-12.&quot;, caption=&quot;Source:Sports Reference | By Brandon Mueting&quot;)  + theme_minimal() + 
+  theme(
+    plot.title = element_text(size = 18, face = &quot;bold&quot;),
+    axis.title = element_text(size = 10), 
+    plot.subtitle = element_text(size=12), 
+    panel.grid.minor = element_blank()
+    )</code></pre>
+<p><img src="/2021/04/01/should-gonzaga-move-to-a-bigger-conference-after-its-performance-in-the-2020-2021-season/index_files/figure-html/unnamed-chunk-26-1.png" width="672" />
+This shows my conclusion, Gonzaga is really good at offense and defense along with USC and Arizona. This is with an exception of Colorado and UCLA. Oregon, Oregon St., Washington St and exception of California are good defensively but not on offense while Stanford and Utah can’t execute on either side of the ball. In my personal conclusion I think Gonzaga would fit better in the Mountain West due to the weak strength of schedule in the PAC-12.</p>
+
+    </div>
+  </article>
+
+  
+
+
+</main>
+
+      <footer class="footer">
+        <ul class="footer-links">
+          <li>
+            <a href="/index.xml" type="application/rss+xml" target="_blank">RSS feed</a>
+          </li>
+          <li>
+            <a href="https://gohugo.io/" class="footer-links-kudos">Made with <img src="/images/hugo-logo.png" alt="Img link to Hugo website" width="22" height="22"></a>
+          </li>
+        </ul>
+      </footer>
+
+    </div>
+    
+
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/r.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/yaml.min.js"></script>
+<script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+
+
+
+    
+
+    
+  </body>
+</html>
+
