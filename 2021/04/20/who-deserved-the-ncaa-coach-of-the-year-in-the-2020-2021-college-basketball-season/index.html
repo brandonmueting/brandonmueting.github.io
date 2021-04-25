@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Hugo 0.81.0" />
+
+
+<title>Who deserved the NCAA Coach of the year in the 2020-2021 College Basketball season? - A Hugo website</title>
+<meta property="og:title" content="Who deserved the NCAA Coach of the year in the 2020-2021 College Basketball season? - A Hugo website">
+
+
+  <link href='/favicon.ico' rel='icon' type='image/x-icon'/>
+
+
+
+  
+
+
+
+
+
+
+
+
+<link href='//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css' rel='stylesheet' type='text/css' />
+
+
+
+<link rel="stylesheet" href="/css/fonts.css" media="all">
+<link rel="stylesheet" href="/css/main.css" media="all">
+
+
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav">
+  <a href="/" class="nav-logo">
+    <img src="/images/logo.png"
+         width="50"
+         height="50"
+         alt="Logo">
+  </a>
+
+  <ul class="nav-links">
+    
+    <li><a href="/about/">About</a></li>
+    
+    <li><a href="https://github.com/rstudio/blogdown">GitHub</a></li>
+    
+    <li><a href="https://twitter.com/rstudio">Twitter</a></li>
+    
+  </ul>
+</nav>
+
+      </header>
+
+
+<main class="content" role="main">
+
+  <article class="article">
+    
+    <span class="article-duration">3 min read</span>
+    
+
+    <h1 class="article-title">Who deserved the NCAA Coach of the year in the 2020-2021 College Basketball season?</h1>
+
+    
+    <span class="article-date">2021-04-20</span>
+    
+
+    <div class="article-content">
+      
+<script src="/2021/04/20/who-deserved-the-ncaa-coach-of-the-year-in-the-2020-2021-college-basketball-season/index_files/header-attrs/header-attrs.js"></script>
+
+
+<p>The College Basketball season after for the first time in NCAA history where the March Madness tournament was canceled. Teams suffered from losing the postseason play like the Dayton Flyers who seemed to be a possible one seed lead by former player Obi Toppin. This season was different. These teams wanted to continue the path they have laid out for them in the previous season. None of the basketball teams could do this without their head coach. The Naismith College Coach of the Year is given to a men’s college basketball coach and a women’s basketball coach. This year, Gonzaga’s Head Coach Mark Few won the award after an almost perfect season until they lost in the National Championship against Baylor. Many people all over social media question, did Mark Few deserve that award over the other coaches? I wanted to dissect more into this, I decided to take six other head coaches with Mark Few to determine who should have taken the Naismith College Coach of the Year.</p>
+<p>The six other candidates:</p>
+<p>Baylor’s Scott Drew</p>
+<p>Michigan’s Juwan Howard</p>
+<p>Ohio St.’s Chris Holtmann</p>
+<p>Illinois’ Brad Underwood</p>
+<p>Houston’s Kelvin Sampson</p>
+<p>Alabama’s Nate Oats</p>
+<pre class="r"><code>library(tidyverse)</code></pre>
+<pre><code>## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.1 ──</code></pre>
+<pre><code>## ✓ ggplot2 3.3.3     ✓ purrr   0.3.4
+## ✓ tibble  3.1.1     ✓ dplyr   1.0.5
+## ✓ tidyr   1.1.3     ✓ stringr 1.4.0
+## ✓ readr   1.4.0     ✓ forcats 0.5.1</code></pre>
+<pre><code>## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()</code></pre>
+<pre class="r"><code>sevencandidates &lt;- read_csv(&quot;~/Desktop/Basketball Coach of the Year 4 - Sheet1.csv&quot;)</code></pre>
+<pre><code>## 
+## ── Column specification ────────────────────────────────────────────────────────
+## cols(
+##   .default = col_double(),
+##   Team = col_character(),
+##   Season = col_character(),
+##   Coach = col_character()
+## )
+## ℹ Use `spec()` for the full column specifications.</code></pre>
+<p>The first thing we want to look into is how much wins each team had for the 2020-2021 season. Success in each basketball program shapes the head coaches future whether his contract gets extended or he gets let go because of how poorly he coaches the team.</p>
+<pre class="r"><code>currentseason&lt;- sevencandidates %&gt;% filter(Season==&quot;2020-2021&quot;)</code></pre>
+<p>Taking a look in past winners of the Naismith College Coach of the Year award, the win column always showed a very high number. For example last year’s Naismith College Coach of the Year winner, Dayton Flyers Head Coach Anthony Grant, lead his team with a record of 29 wins and only two losess. The 2014-2015 winner, Head Coach of the Kentucky Wildcats John Calipari, had almost a perfect season with 38 wins and only one loss in the March Madness tournament. Most of the time the coach with the most wins is usually awarded as Coach of the Year.</p>
+<pre class="r"><code>winsgames&lt;-currentseason %&gt;% 
+  group_by(Team) %&gt;% 
+  summarise(
+  &quot;SeasonGames&quot; = sum(Games),
+  &quot;SeasonWins&quot;= sum(Wins),)</code></pre>
+<pre class="r"><code>winsgames %&gt;% 
+  pivot_longer(
+    cols=starts_with(&quot;Season&quot;), 
+    names_to=&quot;Type&quot;, 
+    values_to=&quot;Wins&quot;) -&gt; winswide</code></pre>
+<pre class="r"><code>ggplot(winsgames, aes(x=reorder(Team, SeasonGames), weight=SeasonGames, fill=SeasonWins)) + 
+  geom_bar() + 
+  coord_flip()+
+labs(x=&quot;Team&quot;, y=&quot;Wins&quot;, title=&quot;Gonzaga won the most games this season under Head Coach Mark Few.&quot;, subtitle=&quot;Scott Drew&#39;s Baylor team not trailing far behind.&quot;, caption=&quot;Source: Sports Reference | By Brandon Mueting&quot;) +
+  geom_bar(color=&quot;black&quot;) +
+   theme_minimal()+
+   theme(
+    plot.title = element_text(size = 12, face = &quot;bold&quot;),
+    axis.title = element_text(size = 10), 
+    plot.subtitle = element_text(size=8), 
+    panel.grid.minor = element_blank()
+    ) +coord_flip()</code></pre>
+<pre><code>## Coordinate system already present. Adding new coordinate system, which will replace the existing one.</code></pre>
+<p><img src="/2021/04/20/who-deserved-the-ncaa-coach-of-the-year-in-the-2020-2021-college-basketball-season/index_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+
+    </div>
+  </article>
+
+  
+
+
+</main>
+
+      <footer class="footer">
+        <ul class="footer-links">
+          <li>
+            <a href="/index.xml" type="application/rss+xml" target="_blank">RSS feed</a>
+          </li>
+          <li>
+            <a href="https://gohugo.io/" class="footer-links-kudos">Made with <img src="/images/hugo-logo.png" alt="Img link to Hugo website" width="22" height="22"></a>
+          </li>
+        </ul>
+      </footer>
+
+    </div>
+    
+
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/r.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/yaml.min.js"></script>
+<script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+
+
+
+    
+
+    
+  </body>
+</html>
+

@@ -308,7 +308,7 @@ Earlier we noticed that they placed in the top half of the West Coast Conference
   geom_point(data=GonzagaMW, aes(x=OpponentPTS, y=Wins)) +
   geom_smooth(data=GonzagaMW, aes(x=OpponentPTS, y=Wins), method=&quot;lm&quot;) +
   geom_point(data=Zags, aes(x=OpponentPTS, y=Wins), color=&quot;blue&quot;) +
- labs(x=&quot;Opponent Points&quot;, y=&quot;Wins&quot;, title=&quot;Gonzaga sits in the middle of the pack.&quot;, subtitle=&quot;The Bulldogs would ram into defense in the Mountain West.&quot;, caption=&quot;Source: Sports Reference | By Brandon Mueting&quot;) + theme_minimal() + 
+ labs(x=&quot;Opponent Points&quot;, y=&quot;Wins&quot;, title=&quot;Gonzaga won a lot of games.&quot;, subtitle=&quot;The Bulldogs would struggle defending the Mountain West.&quot;, caption=&quot;Source: Sports Reference | By Brandon Mueting&quot;) + theme_minimal() + 
   theme(
     plot.title = element_text(size = 16, face = &quot;bold&quot;),
     axis.title = element_text(size = 10), 
@@ -404,9 +404,9 @@ Gonzaga did go undefeated this season, but this shows that they are more offensi
   geom_text_repel(
     data=P12Gonzaga, 
     aes(x=PTS, y=OpponentPTS, label=School))+
-  labs(title=&quot;Gonzaga scores a lot, trapped in the middle in defense.&quot;, subtitle=&quot;Gonzaga has a weak schedule compared to the PAC-12.&quot;, caption=&quot;Source:Sports Reference | By Brandon Mueting&quot;)  + theme_minimal() + 
+  labs(title=&quot;Gonzaga scores points, but falls in the middle defensively.&quot;, subtitle=&quot;Gonzaga has a weak schedule compared to the PAC-12.&quot;, caption=&quot;Source:Sports Reference | By Brandon Mueting&quot;)  + theme_minimal() + 
   theme(
-    plot.title = element_text(size = 18, face = &quot;bold&quot;),
+    plot.title = element_text(size = 16, face = &quot;bold&quot;),
     axis.title = element_text(size = 10), 
     plot.subtitle = element_text(size=12), 
     panel.grid.minor = element_blank()

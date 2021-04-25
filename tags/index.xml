@@ -6,11 +6,29 @@
     <description>Recent content in Tags on A Hugo website</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 01 Apr 2021 00:00:00 +0000</lastBuildDate><atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 25 Apr 2021 00:00:00 +0000</lastBuildDate><atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Alabama</title>
+      <link>/tags/alabama/</link>
+      <pubDate>Sun, 25 Apr 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/alabama/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Baylor</title>
+      <link>/tags/baylor/</link>
+      <pubDate>Sun, 25 Apr 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/baylor/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>College Basketball</title>
       <link>/tags/college-basketball/</link>
-      <pubDate>Thu, 01 Apr 2021 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 25 Apr 2021 00:00:00 +0000</pubDate>
       
       <guid>/tags/college-basketball/</guid>
       <description></description>
@@ -19,9 +37,36 @@
     <item>
       <title>Gonzaga</title>
       <link>/tags/gonzaga/</link>
-      <pubDate>Thu, 01 Apr 2021 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 25 Apr 2021 00:00:00 +0000</pubDate>
       
       <guid>/tags/gonzaga/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Houston</title>
+      <link>/tags/houston/</link>
+      <pubDate>Sun, 25 Apr 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/houston/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Illinois</title>
+      <link>/tags/illinois/</link>
+      <pubDate>Sun, 25 Apr 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/illinois/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Michigan</title>
+      <link>/tags/michigan/</link>
+      <pubDate>Sun, 25 Apr 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/michigan/</guid>
       <description></description>
     </item>
     
@@ -49,6 +94,15 @@
       <pubDate>Thu, 01 Apr 2021 00:00:00 +0000</pubDate>
       
       <guid>/tags/wcc/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Ohio St.</title>
+      <link>/tags/ohio-st./</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/ohio-st./</guid>
       <description></description>
     </item>
     

@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Hugo 0.81.0" />
+
+
+<title>Was Mark Few trhe clear cut favorite to win the Naismith Coach of the Year award? - A Hugo website</title>
+<meta property="og:title" content="Was Mark Few trhe clear cut favorite to win the Naismith Coach of the Year award? - A Hugo website">
+
+
+  <link href='/favicon.ico' rel='icon' type='image/x-icon'/>
+
+
+
+  
+
+
+
+
+
+
+
+
+<link href='//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css' rel='stylesheet' type='text/css' />
+
+
+
+<link rel="stylesheet" href="/css/fonts.css" media="all">
+<link rel="stylesheet" href="/css/main.css" media="all">
+
+
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav">
+  <a href="/" class="nav-logo">
+    <img src="/images/logo.png"
+         width="50"
+         height="50"
+         alt="Logo">
+  </a>
+
+  <ul class="nav-links">
+    
+    <li><a href="/about/">About</a></li>
+    
+    <li><a href="https://github.com/rstudio/blogdown">GitHub</a></li>
+    
+    <li><a href="https://twitter.com/rstudio">Twitter</a></li>
+    
+  </ul>
+</nav>
+
+      </header>
+
+
+<main class="content" role="main">
+
+  <article class="article">
+    
+    <span class="article-duration">7 min read</span>
+    
+
+    <h1 class="article-title">Was Mark Few trhe clear cut favorite to win the Naismith Coach of the Year award?</h1>
+
+    
+    <span class="article-date">2021-04-25</span>
+    
+
+    <div class="article-content">
+      
+<script src="/2021/04/25/was-mark-few-trhe-clear-cut-favorite-to-win-the-naismith-coach-of-the-year-award/index_files/header-attrs/header-attrs.js"></script>
+<script src="/2021/04/25/was-mark-few-trhe-clear-cut-favorite-to-win-the-naismith-coach-of-the-year-award/index_files/kePrint/kePrint.js"></script>
+<link href="/2021/04/25/was-mark-few-trhe-clear-cut-favorite-to-win-the-naismith-coach-of-the-year-award/index_files/lightable/lightable.css" rel="stylesheet" />
+
+
+<p>The College Basketball season after for the first time in NCAA history where the March Madness tournament was canceled. Teams suffered from losing the postseason play like the Dayton Flyers who seemed to be a possible one seed lead by former player Obi Toppin. This season was different. These teams wanted to continue the path they have laid out for them in the previous season. None of the basketball teams could do this without their head coach. The Naismith College Coach of the Year is given to a men’s college basketball coach and a women’s basketball coach. This year, Gonzaga’s Head Coach Mark Few won the award after an almost perfect season until they lost in the National Championship against Baylor. Many people all over social media question, did Mark Few deserve that award over the other coaches? I wanted to dissect more into this, I decided to take six other head coaches with Mark Few to determine who should have taken the Naismith College Coach of the Year.</p>
+<p>The six other candidates:</p>
+<p>Baylor’s Scott Drew</p>
+<p>Michigan’s Juwan Howard</p>
+<p>Ohio St.’s Chris Holtmann</p>
+<p>Illinois’ Brad Underwood</p>
+<p>Houston’s Kelvin Sampson</p>
+<p>Alabama’s Nate Oats</p>
+<pre class="r"><code>library(tidyverse)</code></pre>
+<pre><code>## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.1 ──</code></pre>
+<pre><code>## ✓ ggplot2 3.3.3     ✓ purrr   0.3.4
+## ✓ tibble  3.1.1     ✓ dplyr   1.0.5
+## ✓ tidyr   1.1.3     ✓ stringr 1.4.0
+## ✓ readr   1.4.0     ✓ forcats 0.5.1</code></pre>
+<pre><code>## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()</code></pre>
+<pre class="r"><code>sevencandidates &lt;-read_csv(&quot;~/Desktop/Basketball Coach of the Year 6 - Sheet1.csv&quot;)</code></pre>
+<pre><code>## 
+## ── Column specification ────────────────────────────────────────────────────────
+## cols(
+##   .default = col_double(),
+##   Team = col_character(),
+##   FinalAP = col_character(),
+##   Season = col_character(),
+##   Coach = col_character()
+## )
+## ℹ Use `spec()` for the full column specifications.</code></pre>
+<p>The first thing we want to look into is how many wins each team had for the 2020-2021 season. Success in each basketball program shapes the head coach’s future whether his contract gets extended or he gets let go because of how poorly he coaches the team.</p>
+<pre class="r"><code>currentseason&lt;- sevencandidates %&gt;% filter(Season==&quot;2020-2021&quot;)</code></pre>
+<p>Taking a look at past winners of the Naismith College Coach of the Year award, the win column always showed a very high number. For example last year’s Naismith College Coach of the Year winner, Dayton Flyers Head Coach Anthony Grant, led his team with a record of 29 wins and only two losses. The 2014-2015 winner, Head Coach of the Kentucky Wildcats John Calipari, had almost a perfect season with 38 wins and only one loss in the March Madness tournament. Most of the time the coach with the most wins is usually awarded as Coach of the Year.</p>
+<pre class="r"><code>library(ggalt)</code></pre>
+<pre><code>## Registered S3 methods overwritten by &#39;ggalt&#39;:
+##   method                  from   
+##   grid.draw.absoluteGrob  ggplot2
+##   grobHeight.absoluteGrob ggplot2
+##   grobWidth.absoluteGrob  ggplot2
+##   grobX.absoluteGrob      ggplot2
+##   grobY.absoluteGrob      ggplot2</code></pre>
+<pre class="r"><code>ggplot() +
+  geom_lollipop(
+    data=currentseason,
+    aes(y=reorder(Team, Wins), x=Wins),
+    horizontal = TRUE
+    ) + theme_minimal() +
+  labs(title = &quot;Gonzaga is the clear dominant team with one loss.&quot;, y=&quot;Team&quot;, subtitle=&quot;Houston and Baylor trails by a couple wins.&quot;, caption=&quot;Source: Sports Reference | By Brandon Mueting&quot;) +theme(
+    plot.title = element_text(size = 16, face = &quot;bold&quot;),
+    axis.title = element_text(size = 10),
+    plot.subtitle = element_text(size=12),
+    panel.grid.minor = element_blank()
+    ) +   geom_lollipop(
+    data=currentseason,
+    aes(y=Team, x=Wins),
+    horizontal = TRUE,
+    color = &quot;red&quot;
+  )</code></pre>
+<p><img src="/2021/04/25/was-mark-few-trhe-clear-cut-favorite-to-win-the-naismith-coach-of-the-year-award/index_files/figure-html/unnamed-chunk-5-1.png" width="672" />
+Gonzaga won the most games out of these seven teams. Like I said earlier with the example of Anthony Grant and John Calipari, the most winning coach is usually the coach that wins this award. We know that Mark Few definitely deserves to be in the candidacy talk, but how does the Bulldogs’ strength of schedule compare to the other six teams? If you are a head coach of a basketball program and you are facing tough teams you have to figure out how to coach your players to either match or beat your opponent’s skill. Back in 2013-2014 the Naismith Coach of the Year award winner Greg Marshall, coached the Wichita St. Shockers going undefeated in the regular season only to lose in the second round to Kentucky in March Madness. Many argued the reason they went undefeated is because they were in the Missouri Valley Conference. The Missouri Valley Conference is not one of the Power 6 conferences. Just like Gonzaga the West Coast Conference is not a Power 6 Conference.</p>
+<pre class="r"><code>currentseason %&gt;%
+  summarise(
+    mean(Wins) ,
+    mean(SOS))</code></pre>
+<pre><code>## # A tibble: 1 x 2
+##   `mean(Wins)` `mean(SOS)`
+##          &lt;dbl&gt;       &lt;dbl&gt;
+## 1         25.9        9.07</code></pre>
+<p>The average wins for all seven of these teams were almost 26 wins and the average strength of schedule rated around nine.. The next graphic is going to show which teams won tough games throughout the season. The size of each bubbles will also depend on their final ranking in the AP Poll,</p>
+<pre class="r"><code>library(ggrepel)</code></pre>
+<pre class="r"><code>ggplot() +
+  geom_point(
+    data=currentseason,
+    aes(x=Wins, y=SOS, size=FinalAP),
+    color=&quot;red&quot;,
+    alpha=.5) +
+  geom_vline(xintercept = 25.85714) +
+  geom_hline(yintercept = 9.068571) +
+    geom_text_repel(
+    data=currentseason,
+    aes(x=Wins, y=SOS, label=Team)) +
+      labs(title=&quot;Alabama won the most difficult games on their schedule.&quot;, subtitle=&quot;Mark Few&#39;s Bulldogs lacked tough competition in their schedule.&quot;, caption=&quot;Source: Sports Reference | By Brandon Mueting&quot;)  + theme_minimal() +
+  theme(
+    plot.title = element_text(size = 14, face = &quot;bold&quot;),
+    axis.title = element_text(size = 10),
+    plot.subtitle = element_text(size=12),
+    panel.grid.minor = element_blank()
+    )</code></pre>
+<pre><code>## Warning: Using size for a discrete variable is not advised.</code></pre>
+<p><img src="/2021/04/25/was-mark-few-trhe-clear-cut-favorite-to-win-the-naismith-coach-of-the-year-award/index_files/figure-html/unnamed-chunk-8-1.png" width="672" />
+Ohio St., Michigan and Illinois obviously had some tough games as they played a tougher schedule, while Alabama was the team who won the most games while having a tough schedule. Meanwhile Gonzaga, Houston and Baylor won a lot of their games, but didn’t have as many tough games as the other four teams.</p>
+<p>Another factor that makes a great coach is how much the team improved from the previous season. In the 2011-2012 season Jim Larranaga, head coach of the Miami Hurricanes, ended with a 20-13 record. The following season Head Coach Larranaga ended the season with a record of 29-7. That season he won the Naismith Coach of the Year award. Out of the seven teams I want to know the percentage difference from the previous season for all the teams and see which head coach improved their squad the most.</p>
+<pre class="r"><code>library(kableExtra)</code></pre>
+<pre><code>## 
+## Attaching package: &#39;kableExtra&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:dplyr&#39;:
+## 
+##     group_rows</code></pre>
+<pre class="r"><code>tablecandidates &lt;- sevencandidates %&gt;%
+  group_by(Team, Season, Wins, Coach) %&gt;%
+  summarise(Wins = sum(Wins)) %&gt;%
+  pivot_wider(names_from=Season, values_from = Wins) %&gt;%
+  mutate(PercentChange = (`2020-2021`-`2019-2020`)/`2019-2020`) %&gt;%
+  arrange(desc(PercentChange))</code></pre>
+<pre><code>## `summarise()` has grouped output by &#39;Team&#39;, &#39;Season&#39;, &#39;Wins&#39;. You can override using the `.groups` argument.</code></pre>
+<pre class="r"><code>library(formattable)</code></pre>
+<pre class="r"><code>tablecandidates %&gt;%
+mutate(PercentChange = percent(PercentChange)) %&gt;%
+  kable(escape=F) %&gt;%
+  kable_styling(bootstrap_options = c(&quot;striped&quot;, &quot;condensed&quot;)) %&gt;%
+    row_spec(6, bold = T, color = &quot;white&quot;, background = &quot;blue&quot;) %&gt;%
+    row_spec(1, bold = T, color = &quot;white&quot;, background = &quot;crimson&quot;) %&gt;%
+    row_spec(2, bold = T, color = &quot;white&quot;, background = &quot;red&quot;) %&gt;%
+  row_spec(3, bold = T, color = &quot;white&quot;, background = &quot;navy&quot;) %&gt;%
+  row_spec(4, bold = T, color = &quot;white&quot;, background = &quot;orange&quot;) %&gt;%
+  row_spec(5, bold = T, color = &quot;white&quot;, background = &quot;green&quot;) %&gt;%
+  row_spec(7, bold = T, color = &quot;white&quot;, background = &quot;red&quot;) %&gt;%
+  column_spec(1, bold=T) </code></pre>
+<table class="table table-striped table-condensed" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Team
+</th>
+<th style="text-align:left;">
+Coach
+</th>
+<th style="text-align:right;">
+2019-2020
+</th>
+<th style="text-align:right;">
+2020-2021
+</th>
+<th style="text-align:right;">
+PercentChange
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: crimson !important;font-weight: bold;">
+Alabama
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: crimson !important;">
+Nate Oats
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: crimson !important;">
+16
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: crimson !important;">
+26
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: crimson !important;">
+62.50%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;font-weight: bold;">
+Houston
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
+Kelvin Sampson
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: red !important;">
+23
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: red !important;">
+28
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: red !important;">
+21.74%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: navy !important;font-weight: bold;">
+Michigan
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: navy !important;">
+Juwan Howard
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: navy !important;">
+19
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: navy !important;">
+23
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: navy !important;">
+21.05%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;font-weight: bold;">
+Illinois
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: orange !important;">
+Brad Underwood
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: orange !important;">
+21
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: orange !important;">
+24
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: orange !important;">
+14.29%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;font-weight: bold;">
+Baylor
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;">
+Scott Drew
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: green !important;">
+26
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: green !important;">
+28
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: green !important;">
+7.69%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: blue !important;font-weight: bold;">
+Gonzaga
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: blue !important;">
+Mark Few
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: blue !important;">
+31
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: blue !important;">
+31
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: blue !important;">
+0.00%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;font-weight: bold;">
+Ohio St. 
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: red !important;">
+Chris Holtmann
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: red !important;">
+21
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: red !important;">
+21
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: red !important;">
+0.00%
+</td>
+</tr>
+</tbody>
+</table>
+<p>The Alabama Crimson Tide has the biggest percentage change in wins from the previous season.They did 62.50% better than last season while Gonzaga didn’t see any record improvements from the previous season.
+My conclusion here is Mark Few deserves the award because in the past the coaches with the most wins usually get the award, however Mark Few wasn’t the clear cut favorite as Alabama’s Nate Oats coached his team through a tough schedule and won a few of those games. While also seeing the biggest improvement from last season out of these seven teams. h</p>
+
+    </div>
+  </article>
+
+  
+
+
+</main>
+
+      <footer class="footer">
+        <ul class="footer-links">
+          <li>
+            <a href="/index.xml" type="application/rss+xml" target="_blank">RSS feed</a>
+          </li>
+          <li>
+            <a href="https://gohugo.io/" class="footer-links-kudos">Made with <img src="/images/hugo-logo.png" alt="Img link to Hugo website" width="22" height="22"></a>
+          </li>
+        </ul>
+      </footer>
+
+    </div>
+    
+
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/r.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/yaml.min.js"></script>
+<script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+
+
+
+    
+
+    
+  </body>
+</html>
+
